@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int          @id @default(autoincrement())
+  email      String       @unique
+  name       String?
+  password   String
+  BlogPosts  BlogPosts[]
+  Comments   BlogComment[]
+}
+
+
+model BlogCategorie {
+  id    Int         @id @unique @default(autoincrement())
+  slug  String      @unique
+  title String
+  img   String?
+  Posts BlogPosts[]
+}
+
+model BlogPosts {
+  id          Int           @id @unique @default(autoincrement())
+  slug        String        @unique
+  title       String
+  description String
+  img         String?
+  view        Int           @default(0)
+  catSlug     String
+  cat         BlogCategorie @relation(fields: [catSlug], references: [slug])
+  userEmail   String
+  user        User          @relation(fields: [userEmail], references: [email])
+  comments    BlogComment[]
+}
+model BlogComment {
+  id          Int           @id @unique @default(autoincrement())
+  createdAt   DateTime @default(now())
+  description String
+  userEmail   String
+  user        User          @relation(fields: [userEmail], references: [email])
+  postSlug    String
+  post        BlogPosts     @relation(fields: [postSlug], references: [slug])
+}

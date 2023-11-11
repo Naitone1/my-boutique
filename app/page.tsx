@@ -1,39 +1,58 @@
-import Link from "next/link"
+import { MainNav } from "@/components/main-nav";
+import { buttonVariants } from "../components/ui/button";
+import { siteConfig } from "@/config/site";
+import Link from "next/link";
+import React from "react";
+import ImgSlider from "@/components/imgSlider";
 
-import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
 
-export default function IndexPage() {
+
+export default async function IndexPage() {
+
   return (
-    <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
-      <div className="flex max-w-[980px] flex-col items-start gap-2">
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
-          Beautifully designed components <br className="hidden sm:inline" />
-          built with Radix UI and Tailwind CSS.
-        </h1>
-        <p className="max-w-[700px] text-lg text-muted-foreground">
-          Accessible and customizable components that you can copy and paste
-          into your apps. Free. Open Source. And Next.js 13 Ready.
-        </p>
-      </div>
-      <div className="flex gap-4">
-        <Link
-          href={siteConfig.links.docs}
-          target="_blank"
-          rel="noreferrer"
-          className={buttonVariants()}
-        >
-          Documentation
-        </Link>
-        <Link
-          target="_blank"
-          rel="noreferrer"
-          href={siteConfig.links.github}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          GitHub
-        </Link>
+    <>
+    <MainNav items={siteConfig.mainNav} />
+    <section className="h-screen -mt-20 ml-20 overflow-hidden bg-white dark:bg-black">
+      <div className="pt-20 px-4 py-8 mx-auto static flex">
+        <div className="pt-20 h-screen w-96 z-10 bg-white dark:bg-black">
+          <div className="absolute">
+          <h1 className="tracking-wide text-5xl font-extrabold leading-tight ">
+            Naitone <br className="hidden sm:inline" />
+          </h1>
+          <h2 className="text-2xl mt-2 leading-tight tracking-tighter font-serif">
+            Your friendly neiborhood photographer 🔸
+          </h2>
+          <p className="max-w-[250px] text-md text-muted-foreground my-4 mt-10">
+          Bienvenue dans mon univers ! <br /> 
+          Je suis Naitone, un photographe passionné qui capture la beauté du monde à travers mon objectif. 
+          Explorez mon travail et découvrez des moments captivants figés dans le temps.
+          </p>
+          <div className="flex gap-4 mt-10">
+            <Link
+              href={siteConfig.links.docs}
+              // target="_blank"
+              rel="noreferrer"
+              className={buttonVariants({ variant: "outline" })}
+            >
+              Documentation
+            </Link>
+            <Link
+              target="_blank"
+              rel="noreferrer"
+              href={siteConfig.links.github}
+              className={buttonVariants({ variant: "outline" })}
+            >
+              GitHub
+            </Link>
+
+          </div>
+          </div>
+        </div>
+        <div className="w-screen flex h-screen bg-slate-50 dark:bg-slate-900">
+          <ImgSlider />
+        </div>
       </div>
     </section>
+    </>
   )
 }
