@@ -12,7 +12,7 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10 absolute h-screen -mt-16 bg-white dark:bg-black">
       {items?.length ? (
-        <nav className="flex flex-col space-y-48 pt-20">
+        <nav className="m-auto flex flex-col pt-20 ">
           {items?.map(
             (item, index) =>
               item.href && (
@@ -20,7 +20,7 @@ export function MainNav({ items }: MainNavProps) {
                   key={index}
                   href={item.href}
                   className={cn(
-                    "my-20 w-20 flex -rotate-90 text-sm font-medium text-muted-foreground hover:font-semibold hover:border-b-2",
+                    "my-20 flex -rotate-90 text-sm font-medium text-muted-foreground hover:text-primary",
                     item.disabled && "cursor-not-allowed opacity-80"
                   )}
                 >

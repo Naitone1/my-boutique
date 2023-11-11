@@ -5,7 +5,7 @@ import img1 from "public/picture/1.jpg"
 import img2 from "public/picture/2.jpg"
 import img3 from "public/picture/3.jpg"
 import img4 from "public/picture/4.jpg"
-import { ArrowBigLeft, ArrowBigRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 type Props = {}
 
@@ -117,10 +117,12 @@ const ImgSlider = (props: Props) => {
               <div className="flex rounded-lg gap-5">
                 {SliderData.map((img, i) => (
                   <div className="w-full flex-shrink-0" key={img.src} ref={refs[i]}>
-                    <Image width={200} height={400} src={img.src} className="w-full rounded-lg" alt='test'/>
-                    <div className='bg-gradient-to-b from-slate-500 to-slate-900 -mt-10 ml-5'>
-                      <a href={img.href} className='text-white'>{img.content}</a>
+                    <a href={img.href} className='text-white'>
+                    <div className='bg-gradient-to-b from-slate-500/5 to-slate-900/50'>
+                      <Image width={200} height={400} src={img.src} className="hover:drop-shadow-xl drop-shadow-lg w-full rounded-lg " alt='test'/>
+                        <p className='absolute -mt-10 ml-5'>{img.content}</p>
                     </div>
+                    </a>
                   </div>
                 ))}
               </div>
