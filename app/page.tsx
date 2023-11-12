@@ -11,7 +11,6 @@ export default async function IndexPage() {
 
   return (
     <>
-    <MainNav items={siteConfig.mainNav} />
     <section className="h-screen -mt-20 ml-20 overflow-hidden bg-white dark:bg-black">
       <div className="pt-20 px-4 py-8 mx-auto static flex">
         <div className="pt-20 h-screen w-96 z-10 bg-white dark:bg-black">

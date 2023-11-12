@@ -1,6 +1,6 @@
-# next-template
+# My Boutique and photo app
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+A Next.js 14 template for building apps with Radix UI and Tailwind CSS.
 
 ## Goal of the app 
 
@@ -28,7 +28,7 @@ This is a Next.js application that combines three main features: a photo gallery
 1. **Clone the repository**:
 
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/Naitone1/my-boutique>
 
 ## License
 
