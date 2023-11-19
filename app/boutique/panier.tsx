@@ -48,14 +48,14 @@ const Panier = (props: Props) => {
     return (
         <>
             {pricesItems.length > 0 && pricesItems.map((item, index) => (
-                <span className='flex' key={index}>
+                <span className='flex mb-2' key={index}>
                     <p className='w-80'>{item.price}</p>
                     <p className='border-l-2 px-5'>{item.quantity}</p>
                     <p className='border-l-2 px-5'>{item.pricePoint} €</p>
                 </span>
             ))}
             <Separator className='my-4'/>
-            <p className='mb-5'>Total : {sum} €</p>
+            <p className='mb-5 text-right mr-5 font-bold'>Total : {sum} €</p>
             <Button variant='default' onClick={() => handleSubscription(props.items)}>Commandez</Button>
         </>
     );

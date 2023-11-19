@@ -1,11 +1,43 @@
-import { MainNav } from "@/components/main-nav";
 import { buttonVariants } from "../components/ui/button";
 import { siteConfig } from "@/config/site";
 import Link from "next/link";
 import React from "react";
 import ImgSlider from "@/components/imgSlider";
 
-
+let data = [
+  {
+      'src' : '/picture/4.jpg', 
+      'content' : 'Croatia',
+  },
+  {
+      'src' : '/picture/2.jpg',
+      'content' : 'Venice',
+  },
+  {
+      'src' : '/picture/3.jpg',
+      'content' : 'Crete',
+  },
+  {
+      'src' : '/picture/4.jpg',
+      'content' : 'Test5',
+  },
+  {
+      'src' : '/picture/2.jpg',
+      'content' : 'Test2',
+  },
+  {
+      'src' : '/picture/1.jpg', 
+      'content' : 'Test',
+  },
+  {
+    'src' : '/picture/4.jpg',
+    'content' : 'Test5',
+  },
+  {
+      'src' : '/picture/3.jpg',
+      'content' : 'Test3',
+  },
+]
 
 export default async function IndexPage() {
 
@@ -48,7 +80,7 @@ export default async function IndexPage() {
           </div>
         </div>
         <div className="w-screen flex h-screen bg-slate-50 dark:bg-slate-900">
-          <ImgSlider />
+          <ImgSlider data={data}/>
         </div>
       </div>
     </section>

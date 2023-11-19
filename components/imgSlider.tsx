@@ -1,5 +1,5 @@
 'use client'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import React, { useState } from 'react'
 import img1 from "public/picture/1.jpg"
 import img2 from "public/picture/2.jpg"
@@ -7,32 +7,15 @@ import img3 from "public/picture/3.jpg"
 import img4 from "public/picture/4.jpg"
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-type Props = {}
+type Props = {
+  data : {
+    src : string, 
+    content : string,
+    href: string
+  }[]
+}
 
 const ImgSlider = (props: Props) => {
-
-    const SliderData = [
-        {
-            'src' : img1, 
-            'content' : 'test',
-            'href': '/'
-        },
-        {
-            'src' : img2,
-            'content' : 'test2',
-            'href': '/'
-        },
-        {
-            'src' : img3,
-            'content' : 'test3',
-            'href': '/'
-        },
-        {
-            'src' : img4,
-            'content' : 'test5',
-            'href': '/'
-        },
-    ]
 
     
     {
@@ -42,12 +25,12 @@ const ImgSlider = (props: Props) => {
         // We are using react ref to 'tag' each of the images. Below will create an array of
         // objects with numbered keys. We will use those numbers (i) later to access a ref of a
         // specific image in this array.
-        const refs = SliderData.reduce((acc, val, i) => {
+        const refs = props.data.reduce((acc, val, i) => {
           acc[i] = React.createRef();
           return acc;
         }, {});
       
-        const scrollToImage = i => {
+        const scrollToImage = (i:number) => {
           // First let's set the index of the image we want to see next
           setCurrentImage(i);
           // Now, this is where the magic happens. We 'tagged' each one of the images with a ref,
@@ -65,7 +48,7 @@ const ImgSlider = (props: Props) => {
         };
       
         // Some validation for checking the array length could be added if needed
-        const totalImages = SliderData.length;
+        const totalImages = props.data.length;
       
         // Below functions will assure that after last image we'll scroll back to the start,
         // or another way round - first to last in previousImage method.
@@ -97,7 +80,7 @@ const ImgSlider = (props: Props) => {
             type="button"
             onClick={isLeft ? previousImage : nextImage}
             className={`${arrowStyle} ${isLeft ? 'left-2' : 'right-2'}`}
-            style={{ top: '40%' }}
+            // style={{ top: '40%' }}
           >
             <span role="img" aria-label={`Arrow ${isLeft ? 'left' : 'right'}`}>
               {isLeft ? <ChevronLeft className="text-primary"/> : <ChevronRight className="text-primary"/>}
@@ -112,15 +95,17 @@ const ImgSlider = (props: Props) => {
         // Finally the image itself will be 100% of a parent div. Outer div is
         // set with position relative, so we can place our cotrol buttons using
         // absolute positioning on each side of the image. */}
-          <div className="ml-40 flex justify-center items-center overflow-hidden w-full pl-40">
+          <div className="ml-40 flex justify-center items-center overflow-y-hidden w-full pl-40">
             <div className="relative w-1/2 xl:w-1/4 ">
               <div className="flex rounded-lg gap-5">
-                {SliderData.map((img, i) => (
-                  <div className="w-full flex-shrink-0" key={img.src} ref={refs[i]}>
-                    <a href={img.href} className='text-white'>
-                    <div className='bg-gradient-to-b from-slate-500/5 to-slate-900/50'>
-                      <Image width={200} height={400} src={img.src} className="hover:drop-shadow-xl drop-shadow-lg w-full rounded-lg " alt='test'/>
-                        <p className='absolute -mt-10 ml-5'>{img.content}</p>
+                {props.data.map((img, i, index) => (
+                  <div className="w-full flex-shrink-0 relative" key={index} ref={refs[i]}>
+                    <a href='/galerie' className='text-white'>
+                    <div className=''>
+                      <Image width={200} height={400} src={img.src} className="hover:drop-shadow-xl drop-shadow-lg w-full rounded-lg " alt='Test'/>
+                      <div className='absolute w-full rounded-lg -mt-20 h-20 pt-5 pl-5 bg-gradient-to-b from-slate-900/0 to-slate-900/90'>
+                        <p>{img.content}</p>
+                      </div>
                     </div>
                     </a>
                   </div>

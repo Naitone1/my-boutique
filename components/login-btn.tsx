@@ -16,7 +16,7 @@ export default function LoginBtn() {
         >
           {session?.user?.name}
         </Link>
-        <Button className={buttonVariants({ variant: "destructive" })} onClick={() => signOut()}>
+      <Button variant={"secondary"}        onClick={() => signOut()}>
           Sign out
         </Button>
       </div>
