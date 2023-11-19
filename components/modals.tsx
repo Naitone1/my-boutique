@@ -7,9 +7,10 @@ import { DialogDescription } from "@radix-ui/react-dialog";
 interface Props {
   icon: JSX.Element,
   ModalSubComp:  JSX.Element,
+  title: string
 }
 
-export default function EditModal({icon, ModalSubComp} : Props) {
+export default function EditModal({icon, ModalSubComp, title} : Props) {
 
   return (
     <>
@@ -17,7 +18,7 @@ export default function EditModal({icon, ModalSubComp} : Props) {
       <DialogTrigger>{icon}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Ajouter un nouveau mouvement</DialogTitle>
+          <DialogTitle className="mb-5">{title}</DialogTitle>
           <DialogDescription>
           {ModalSubComp}
           </DialogDescription>

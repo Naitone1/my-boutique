@@ -7,6 +7,17 @@ export async function getPrices() {
     return prices.data.reverse()
 }
 
+export async function getPrice(priceId: string) {
+    const price = await stripe.prices.retrieve(priceId);
+    return price.unit_amount?.toFixed(2)
+}
+export async function getProducts() {
+    const prices = await stripe.products.list({
+        limit : 4,
+    });
+    return prices.data.reverse()
+}
+
 export async function getProduct(e) {
     const product = await stripe.products.retrieve(e)
     return product
